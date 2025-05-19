@@ -1,0 +1,34 @@
+# macOS system files
+.DS_Store
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# VS Code settings
+.vscode/
+
+# AWS SAM build artifacts
+.sam/
+
+# CDK context files
+cdk.out/
+cdk.context.json
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# Node modules (if any JS/TS code)
+node_modules/
