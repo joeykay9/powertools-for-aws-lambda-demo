@@ -1,0 +1,4 @@
+aws-lambda-powertools[tracer]
+pydantic
+aws-xray-sdk
+# Add any other runtime dependencies for the Lambda here

@@ -1,0 +1,2 @@
+pytest==6.2.5
+# Only include dev/test tools, not any aws-cdk v1 packages
