@@ -15,6 +15,7 @@ __pycache__/
 
 # AWS SAM build artifacts
 .sam/
+.aws-sam/
 
 # CDK context files
 cdk.out/
