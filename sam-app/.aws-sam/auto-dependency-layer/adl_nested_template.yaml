@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM CLI Nested Stack for Auto Dependency Layer Creation
+Metadata:
+  SamCliInfo: 1.132.0
+  key: AWS SAM CLI sync command
+Outputs:
+  TimesheetsFunctioncd868feeDepLayer:
+    Value:
+      Ref: TimesheetsFunctioncd868feeDepLayer
+Resources:
+  TimesheetsFunctioncd868feeDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.12
+      ContentUri: /Users/joelklo/Developer/bigspark-offsite/sam-app/.aws-sam/auto-dependency-layer/TimesheetsFunctioncd868feeDepLayer
+      Description: Auto created layer for dependencies of function TimesheetsFunction
+      LayerName: powertools-times3ee72911-TimesheetsFunctioncd868fee-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+Transform: AWS::Serverless-2016-10-31

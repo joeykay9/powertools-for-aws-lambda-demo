@@ -1,0 +1,109 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "Powertools API", "version": "1.0.0" },
+  "servers": [{ "url": "/" }],
+  "paths": {
+    "/timesheets": {
+      "get": {
+        "tags": ["Timesheets"],
+        "summary": "List timesheets",
+        "description": "Retrieve all submitted timesheets.",
+        "operationId": "get_timesheets_timesheets_get",
+        "responses": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": {} }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Timesheets"],
+        "summary": "Create timesheet",
+        "description": "Create a new timesheet entry.",
+        "operationId": "create_timesheet_timesheets_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Timesheet" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HTTPValidationError" }
+              }
+            }
+          },
+          "200": {
+            "description": "Successful Response",
+            "content": { "application/json": {} }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": { "$ref": "#/components/schemas/ValidationError" },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Timesheet": {
+        "properties": {
+          "user": {
+            "type": "string",
+            "title": "User",
+            "description": "The user who submitted the timesheet."
+          },
+          "hours": {
+            "type": "number",
+            "minimum": 0.0,
+            "title": "Hours",
+            "description": "Number of hours worked."
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "title": "Date",
+            "description": "Date of the timesheet (YYYY-MM-DD)."
+          }
+        },
+        "type": "object",
+        "required": ["user", "hours", "date"],
+        "title": "Timesheet"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": { "anyOf": [{ "type": "string" }, { "type": "integer" }] },
+            "type": "array",
+            "title": "Location"
+          },
+          "type": { "type": "string", "title": "Error Type" }
+        },
+        "type": "object",
+        "required": ["loc", "msg", "type"],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

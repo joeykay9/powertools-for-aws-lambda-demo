@@ -1,0 +1,5 @@
+requests
+pydantic
+aws-lambda-powertools[event-handler,validation]
+aws-lambda-powertools[tracer]
+aws-lambda-powertools[bedrock-agent-resolver]

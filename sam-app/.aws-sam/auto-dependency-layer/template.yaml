@@ -1,0 +1,55 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'timesheets
+
+  Sample SAM Template for timesheets
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  TimesheetsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: TimesheetsFunction
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+      - x86_64
+      Events:
+        Timesheets:
+          Type: Api
+          Properties:
+            Path: /timesheets
+            Method: any
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.TimesheetsFunctioncd868feeDepLayer
+    Metadata:
+      SamResourceId: TimesheetsFunction
+  AwsSamAutoDependencyLayerNestedStack:
+    DeletionPolicy: Delete
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      TemplateURL: /Users/joelklo/Developer/bigspark-offsite/sam-app/.aws-sam/auto-dependency-layer/adl_nested_template.yaml
+    Type: AWS::CloudFormation::Stack
+Outputs:
+  TimesheetsApi:
+    Description: API Gateway endpoint URL for Prod stage for Timesheets function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/timesheets/
+  TimesheetsFunction:
+    Description: Timesheets Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - TimesheetsFunction
+      - Arn
+  TimesheetsFunctionIamRole:
+    Description: Implicit IAM Role created for Timesheets function
+    Value:
+      Fn::GetAtt:
+      - TimesheetsFunctionRole
+      - Arn
